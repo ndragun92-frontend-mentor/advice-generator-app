@@ -6,14 +6,15 @@
       <h1
         class="text-primary-neonGreen uppercase tracking-[2.8px] sm:tracking-[3.5px] text-[12px] sm:text-[14px]"
       >
-        Advice <span>#117</span>
+        <template v-if="pending">Loading...</template>
+        <template v-else>
+          Advice <span v-text="`#${result?.slip?.id}`" />
+        </template>
       </h1>
       <blockquote
         class="mt-[22px] text-[24px] sm:text-[28px] leading-[33px] sm:leading-[38px] tracking-[-0.3px]"
-      >
-        “It is easy to sit up and take notice, what's difficult is getting up
-        and taking action.”
-      </blockquote>
+        v-text="pending ? 'Loading...' : `“${result?.slip?.advice}”`"
+      />
       <div class="mt-6 sm:mt-10">
         <img
           class="block sm:hidden mx-auto"
@@ -32,9 +33,16 @@
         <button
           aria-label="Generate advice"
           class="w-16 h-16 bg-primary-neonGreen flex items-center justify-center rounded-full"
+          :class="{ 'pointer-events-none': generating }"
           type="button"
+          @click="onGenerateNew"
         >
-          <img src="/images/icon-dice.svg" alt="Icon dice" />
+          <img
+            class="dice block"
+            :class="{ 'animate-spin': generating }"
+            src="/images/icon-dice.svg"
+            alt="Icon dice"
+          />
         </button>
       </div>
     </div>
@@ -46,3 +54,42 @@ export default {
   name: "PageHomepage",
 };
 </script>
+
+<script lang="ts" setup>
+const {
+  pending,
+  data: result,
+  refresh,
+} = await useFetch("https://api.adviceslip.com/advice", {
+  transform: (res: any) => {
+    if (!res) return {};
+    return JSON.parse(res) as { id: number; advice: string };
+  },
+});
+
+const generating = ref(false);
+const onGenerateNew = () => {
+  generating.value = true;
+  console.log("generate new");
+};
+</script>
+
+<style lang="scss" scoped>
+button {
+  &:not(.pointer-events-none) {
+    @apply duration-200;
+    img {
+      @apply duration-200;
+    }
+    &:hover {
+      @apply shadow-primary;
+      .dice {
+        @apply rotate-[135deg];
+      }
+    }
+  }
+  &.pointer-events-none {
+    @apply shadow-primary;
+  }
+}
+</style>

@@ -32,6 +32,9 @@ module.exports = {
           darkBlue: "hsl(218, 23%, 16%)",
         },
       },
+      boxShadow: {
+        primary: "0 0 30px 5px hsl(150deg 100% 66%);",
+      },
       flex: {
         2: "2 2 0%",
         3: "3 3 0%",
