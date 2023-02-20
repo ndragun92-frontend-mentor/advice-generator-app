@@ -34,6 +34,7 @@
     "@morev/vue-transitions": "^2.3.6",
     "@pinia/nuxt": "^0.4.7",
     "lodash-es": "^4.17.21",
-    "pinia": "^2.0.27"
+    "pinia": "^2.0.27",
+    "typeit": "^8.7.1"
   }
 }
