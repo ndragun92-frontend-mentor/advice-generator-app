@@ -30,7 +30,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/advice-generator-app-made-with-nuxt-3-tailwind-5Lwu9p67pv)
 - Live Site URL: [Vercel](https://advice-generator-app-seven-psi.vercel.app/)
 
 ## My process
