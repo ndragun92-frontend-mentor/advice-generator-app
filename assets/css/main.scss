@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap');
+
 body {
   -webkit-font-smoothing: antialiased;
+  font-family: 'Manrope', sans-serif;
+  @apply bg-neutral-darkBlue text-primary-lightCyan h-screen w-screen;
+}
+
+#__nuxt {
+  @apply w-full h-full flex flex-col;
 }
